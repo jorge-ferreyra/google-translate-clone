@@ -25,7 +25,7 @@ export async function translate ({
     },
     {
       role: ChatCompletionRequestMessageRoleEnum.User,
-      content: 'Hola mundo {{Spanish}} [[English]]'
+      content: 'Hola mundo {{Español}} [[English]]'
     },
     {
       role: ChatCompletionRequestMessageRoleEnum.Assistant,
