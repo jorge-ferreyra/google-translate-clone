@@ -1,5 +1,6 @@
 import { Form } from 'react-bootstrap'
 import { SectionType } from '../types.d'
+import React from 'react'
 
 interface Props {
   type: SectionType
@@ -20,7 +21,18 @@ export function TextArea ({ type, loading, value, onChange }: Props) {
   const styles = type === SectionType.From 
     ? commonStyles
     : { ...commonStyles, backgroundColor: 'rgba(0, 0, 0, .2)' }
+
+    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      onChange(event.target.value)
+    }
+
   return (
-    <Form.Control as='textarea' autoFocus={type === SectionType.From} placeholder={getPlaceHolder({ type, loading })} style={styles} value={value} />
+    <Form.Control 
+      as='textarea'
+      autoFocus={type === SectionType.From}
+      placeholder={getPlaceHolder({ type, loading })}
+      style={styles}
+      value={value}
+      onChange={handleChange} />
   )
 }

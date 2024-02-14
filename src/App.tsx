@@ -11,7 +11,7 @@ import { SectionType } from './types.d'
 import { TextArea } from './components/TextArea'
 
 function App() {
-  const { fromLanguage, toLanguage, fromText, result,
+  const { loading, fromLanguage, toLanguage, fromText, result,
   interchangeLanguages, setFromLanguage, setToLanguage, setFromText, setResult } = useTranslate()
   return (
     <>
@@ -35,7 +35,7 @@ function App() {
           <Stack gap={2}>
           <Col>
             <LanguageSelector type={SectionType.To} value={toLanguage} onChange={setToLanguage} />
-            <TextArea type={SectionType.To} value={result} onChange={setResult} />
+            <TextArea type={SectionType.To} value={result} onChange={setResult} loading={loading} />
           </Col>
           </Stack>
 
