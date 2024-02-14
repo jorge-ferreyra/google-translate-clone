@@ -1,33 +1,44 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Stack } from 'react-bootstrap'
 
 import './App.css'
 import { useTranslate } from './hooks/useTranslate'
 import { AUTO_LANGUAGE } from './const'
 import { ArrowsIcon } from './components/Icons'
 import { LanguageSelector } from './components/LanguageSelector'
+import { SectionType } from './types.d'
+import { TextArea } from './components/TextArea'
 
 function App() {
-  const { fromLanguage, toLanguage, interchangeLanguages, setFromLanguage, setToLanguage } = useTranslate()
+  const { fromLanguage, toLanguage, fromText, result,
+  interchangeLanguages, setFromLanguage, setToLanguage, setFromText, setResult } = useTranslate()
   return (
     <>
       <Container fluid>
-        <h1>Google Translate</h1>
+        <h2>Google Translate</h2>
         <Row>
-          <Col>
-            <LanguageSelector type='from' value={fromLanguage} onChange={setFromLanguage} />
-            {fromLanguage}
-          </Col>
-          <Col>
+
+          <Stack gap={2}>
+            <Col>
+              <LanguageSelector type={SectionType.From} value={fromLanguage} onChange={setFromLanguage} />
+              <TextArea type={SectionType.From} value={fromText} onChange={setFromText} />
+            </Col>
+          </Stack>
+
+          <Col xs='auto'>
             <Button variant='link' disabled={fromLanguage === AUTO_LANGUAGE} onClick={interchangeLanguages}>
               <ArrowsIcon />
             </Button>
           </Col>
+
+          <Stack gap={2}>
           <Col>
-            <LanguageSelector type='to' value={toLanguage} onChange={setToLanguage} />
-            {toLanguage}
+            <LanguageSelector type={SectionType.To} value={toLanguage} onChange={setToLanguage} />
+            <TextArea type={SectionType.To} value={result} onChange={setResult} />
           </Col>
+          </Stack>
+
         </Row>
       </Container>
     </>
