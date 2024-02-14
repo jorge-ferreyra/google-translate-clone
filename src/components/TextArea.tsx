@@ -9,7 +9,7 @@ interface Props {
   onChange: (value: string) => void
 }
 
-const commonStyles = { border: 0, height: '200px' }
+const commonStyles = { border: 0, height: '200px', resize: 'none' }
 
 const getPlaceHolder = ({ type, loading }: { type: SectionType, loading?: boolean }) => {
   if (type === SectionType.From) return 'Introducir texto'
@@ -33,6 +33,7 @@ export function TextArea ({ type, loading, value, onChange }: Props) {
       placeholder={getPlaceHolder({ type, loading })}
       style={styles}
       value={value}
+      disabled={type === SectionType.To}
       onChange={handleChange} />
   )
 }
